@@ -1,2 +1,2 @@
 # MobileMink-WebService
-Web Service to provide memento data to the Mobile Memento app
+Web Service to provide memento data to the Mobile Mink app
