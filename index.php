@@ -1,11 +1,12 @@
-<!DOCTYPE html>
-<html>
-<body>
-
 <?php
+header('Content-Type: application/link-format');
+date_default_timezone_set('America/New_York');
 if (extension_loaded("curl"))
 {
-    echo "cURL extension is loaded<br>";
+    //echo "cURL extension is loaded<br>";
+    
+    
+    
     include 'HttpIO.php';
     include 'TimeMap.php';
     
@@ -22,6 +23,3 @@ else
     echo "cURL extension is not available<br>";
 }
 ?>
-
-</body>
-</html>
