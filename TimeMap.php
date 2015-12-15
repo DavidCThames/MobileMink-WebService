@@ -82,7 +82,7 @@ Class TimeMap {
             $temp_next = null;
             $temp_mementos = explode("\n", $temp_data); //split mementos into an array at new lines
             $temp_mementosLength = count($temp_mementos) - 1;
-            $this->mementosCount += $mementosLength;
+            $this->mementosCount += $temp_mementosLength;
 
             //extract header and footer
             $temp_header1 = $temp_mementos[0]; //get header text
