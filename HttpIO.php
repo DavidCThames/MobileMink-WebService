@@ -17,7 +17,7 @@ function getMementoHTML($urlToRead, $n) {
     
     
     
-    /*****JFB mods to use the indexed timemaps here****/
+    /*----------GET ALL TIMEMAPS----------*/
     curl_setopt($ch, CURLOPT_URL, $url); // set url 
 
     // JFB: get initial indexed list:
@@ -50,64 +50,39 @@ function getMementoHTML($urlToRead, $n) {
         }
     }
     
-    /**jfb debug**/
-    print("Justin has the following URI-Ts for $urlToRead\n<br><br>");
-    print_r($tmArray);
-    //exit();
-    /**end jfb debug**/
+    //Print all TimeMaps
+//    print("Justin has the following URI-Ts for $urlToRead\n<br><br>");
+//    print_r($tmArray);
+//    exit();
 
 
-    /*****end JFB mods****/
-
+   /*----------Aggregate TimeMaps----------*/
     
-    
-    
-    
-    
-    /** JFB commenting this stuff out for a quick hack of the new stuff **/
-//    $output_tm = null;
-//    $n = 0;
-//    do {
-//        curl_setopt($ch, CURLOPT_URL, $url); // set url 
-//        // $output contains the output string 
-//        $data = curl_exec($ch); 
-//        if($output_tm == null)
-//            $output_tm = new TimeMap($data, $urlToRead);
-//        else
-//            $output_tm->combine($data, $url);
-//    curl_setopt($ch, CURLOPT_HEADER, 0);
-//    $n++;
-//    $url = $output_tm->nextMap();  
-//        echo $output_tm->nextMap();
-//    }while($output_tm->nextMap() != false);
-
-    /** End JFB commenting  **/
-
-    if($n == null)
+    if($n == null) //if a max number of TimeMaps is NOT given start from the begining of the array
         $TMn = 0;
-    else {
+    else { //else start n from the end of the array to the end of the array
         if($n < count($tmArray))
             $TMn = count($tmArray) - $n;
         else
             $TMn = 0;
     }
     
-    /** new TM gathering from JFB **/
+    
+    
     $output_tm = null;
-    for($i = $TMn; $i < count($tmArray); $i++)
+    for($i = $TMn; $i < count($tmArray); $i++) //for each TimeMap starting at $TMn (changes depending on # of TimeMaps asked for) to the end
     {
-        echo "\n" . $tmArray[$i] . "\n";
     	curl_setopt($ch, CURLOPT_URL, $tmArray[$i]); // set url 
-	$data = curl_exec($ch); 
+	   $data = curl_exec($ch); //recieve TimeMap
 
 
-	if($output_tm == null)
-            $output_tm = new TimeMap($data, $tmArray[$i]);
-        else
-            $output_tm->combine($data, $tmArray[$i]);
+        if($output_tm == null) //If this is the first TimeMap create a new TimeMap object
+                $output_tm = new TimeMap($data, $tmArray[$i]);
+            else //Else agregate with the original TimeMap
+                $output_tm->combine($data, $tmArray[$i]);
 
-	$output_tm->combine($data, $url);
-	curl_setopt($ch, CURLOPT_HEADER, 0);
+        $output_tm->combine($data, $url);
+        curl_setopt($ch, CURLOPT_HEADER, 0);
 
     }
 
@@ -115,10 +90,10 @@ function getMementoHTML($urlToRead, $n) {
 
     /** end TM gathering **/
     
-    //$output_tm->printText();
+    $output_tm->printText(); //Print Final aggregated and paginated TimeMap
     
     curl_close($ch);  
     
-    file_put_contents('TMInversionService.log', $output_tm->log(), FILE_APPEND);
+    file_put_contents('TMInversionService.log', $output_tm->log(), FILE_APPEND); //Add an entry to the log for this runthrough 
 }
 ?>

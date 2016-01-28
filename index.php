@@ -8,13 +8,13 @@ if (extension_loaded("curl")) //check if the cURL extension for php is avaliable
     include 'TimeMap.php'; //containst the TimeMap object
     
     //test($_GET['url']);
-    if($_GET['url'] == null) //check if the user entered a URL to recieve TimeMaps for
+    if($_GET['url'] == null) //check if the client entered a URL to recieve TimeMaps for
         echo "No URL given. in the url for this page use /?url=http://...";
     else {
-        if($_GET['n'] == null)
-            getMementoHTML($_GET['url'], null); //Create the TimeMap for the given URL (function in HttpIO.php);
+        if($_GET['n'] == null) //check if the client specified the number of TimeMaps  to aggrigate
+            getMementoHTML($_GET['url'], null); //Create the TimeMap for the given URL with all TimeMaps(function in HttpIO.php);
         else
-            getMementoHTML($_GET['url'], $_GET['n']); //Create the TimeMap for the given URL (function in HttpIO.php);
+            getMementoHTML($_GET['url'], $_GET['n']); //Create the TimeMap for the given URL with n TimeMaps(function in HttpIO.php);
     }   
 }
 else
