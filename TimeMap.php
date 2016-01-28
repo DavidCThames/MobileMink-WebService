@@ -17,6 +17,8 @@ Class TimeMap {
         $this->TMURIs[0] = "http://mementoproxy.cs.odu.edu/aggr/timemap/link/1/" . $urlToRead;
         
         $this->next = null;
+        $data = trim($data);
+        
         $mementos = explode("\n", $data); //split mementos into an array at new lines
         $mementosLength = count($mementos) - 1;
         $this->mementosCount += $mementosLength;
@@ -35,7 +37,6 @@ Class TimeMap {
         
         $this->footer2 = array_pop($mementos);
         $this->footer1 = array_pop($mementos);
-        
         $this->mementos = $mementos;
     }
     
@@ -76,6 +77,7 @@ Class TimeMap {
     }
     public $combines = 0;
     public function combine($temp_data, $url) {
+            $temp_data = trim($temp_data);
             $this->TMURIs[] = $url;
             
         //same as the constructor to split up parts
@@ -112,12 +114,14 @@ Class TimeMap {
             $temp_sections[0] = implode("<", $temp_self_url);
         
         //Date
+    
             $temp_footer_middle = explode('"', $temp_footer_sections[1]); //seperate the middle section which containst the date
         
             $temp_footer_middle[5] = $from; //seperate the date itself from other properties and replace it with the new date
         
             $temp_footer_sections[1] = implode('"', $temp_footer_middle); //recombine the middle section of the footer and put it into the sections array
             $this->footer2 = implode(">", $temp_footer_sections); //recombine the sections of the footer and put it into the main footer
+
     }
     
     public function log() {
