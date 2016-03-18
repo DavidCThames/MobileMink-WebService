@@ -17,7 +17,7 @@ the requesting client.
 ## How to Run
 *NOTE: Built in server (startServer.bat) currently not working. Please use your own.*
 * Start a web server at the root directory of the root directory by either starting your own or running 'startServer.bat' on a windows machine.
-* run the command on the terminal or command line 'curl [WEBSERVER NAME]/index.php?url=[URL TO LOAD MEMENTOS FOR]' replaceing the [...] with your information
+* run the command on the terminal or command line 'curl "[WEBSERVER NAME]/index.php?url=http://[URL TO LOAD MEMENTOS FOR]&n=[# OF PAGES OF TIMEMAPS TO LOAD]"' replaceing the [...] with your information
 * curl will return a list of all the mementos for the site sorted newest to oldest from top to bottom
 
 ## Log - TMInversionService.log
