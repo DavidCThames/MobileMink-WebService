@@ -1,0 +1,4 @@
+resources/web.config
+resources/hostingstart-python.txt
+TMInversionService.log
+*.log
