@@ -19,6 +19,6 @@ if (extension_loaded("curl")) //check if the cURL extension for php is avaliable
 }
 else
 {
-    echo "cURL extension is not available<br>";
+    echo "cURL extension is not available";
 }
 ?>
