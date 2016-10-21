@@ -6,13 +6,7 @@ Web Service to provide aggregated memento data sorted from oldest to newest for 
 * Justin Brunelle
 
 ## Summary
-Using the Memento API [4], we retrieve a list of Time-
-Maps for a URI-R (e.g., http://www.google.com/). We request
-each TimeMap individually, compiling the URI-Ms
-from the TimeMaps, sorting the mementos by memento
-datetime from newest to oldest, and returning the entire
-set of known URI-Ms in a newly aggregated TimeMap to
-the requesting client.
+Using the Memento API [4], we retrieve a list of TimeMaps for a URI-R (e.g., http://www.google.com/). We request each TimeMap individually, compiling the URI-Ms from the TimeMaps, sorting the mementos by Memento-Datetime from newest to oldest, and returning the entire set of known URI-Ms in a newly aggregated TimeMap to the requesting client.
 
 ## How to Run
 *NOTE: Built in server (startServer.bat) currently not working. Please use your own.*
